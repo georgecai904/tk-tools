@@ -1,6 +1,7 @@
 import streamlit as st
 from src.ui.styles import apply_apple_style
-from src.ui.views import pdf_splitter
+from src.ui.views import tk_label_split_by_tracking, tk_orders_transfer, changelog
+from src.core.version_control import get_current_version
 
 # 设置页面配置 (必须是第一个 Streamlit 命令)
 st.set_page_config(
@@ -20,9 +21,9 @@ def main():
         
         # 导航菜单
         menu_options = {
-            "PDF 拆分工具": "pdf_splitter",
-            # 未来可以在这里添加更多工具
-            # "Label Generator": "label_generator",
+            "PDF 拆分工具": "tk_label_split_by_tracking",
+            "订单 CSV 转换": "tk_orders_transfer",
+            "更新日志": "changelog",
         }
         
         selection = st.radio(
@@ -32,11 +33,16 @@ def main():
         )
         
         st.markdown("---")
-        st.caption("© 2025 TK 工具箱")
+        st.caption(f"© 2025 TK 工具箱 v{get_current_version()}")
 
     # 路由分发
     if selection == "PDF 拆分工具":
-        pdf_splitter.render()
+        tk_label_split_by_tracking.render()
+    elif selection == "订单 CSV 转换":
+        tk_orders_transfer.render()
+    elif selection == "更新日志":
+        changelog.render()
+
     # elif selection == "Label Generator":
     #     label_generator.render()
 

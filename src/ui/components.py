@@ -12,3 +12,9 @@ def section_header(title: str, subtitle: str = None):
     st.markdown(f"### {title}")
     if subtitle:
         st.caption(subtitle)
+
+def success_message(message: str):
+    st.success(message, icon="✅")
+
+def error_message(message: str):
+    st.error(message, icon="⚠️")
